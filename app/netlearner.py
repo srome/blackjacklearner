@@ -17,13 +17,13 @@ class DQNLearner(Learner):
         # Create Model
         model = Sequential()
 
-        model.add(Dense(2, init='lecun_uniform', output_dim=10))
+        model.add(Dense(2, init='lecun_uniform', input_shape=(2,)))
         model.add(Activation('relu'))
 
-        model.add(Dense(10, init='lecun_uniform', output_dim=4))
+        model.add(Dense(10, init='lecun_uniform'))
         model.add(Activation('relu'))
 
-        model.add(Dense(4, init='lecun_uniform', output_dim=2))
+        model.add(Dense(4, init='lecun_uniform'))
         model.add(Activation('linear'))
 
         rms = RMSprop()
