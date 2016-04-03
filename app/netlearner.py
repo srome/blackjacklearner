@@ -57,13 +57,9 @@ class DQNLearner(Learner):
             new = self._discount * maxQ
 
             if self._last_action == Constants.hit:
-                old = self._last_target[0][0]
-
-                self._last_target[0][0] = (1-self._learning_rate)*old + self._learning_rate*(reward+new)
-
+                self._last_target[0][0] = reward+new
             else:
-                old = self._last_target[0][1]
-                self._last_target[0][1] = (1-self._learning_rate)*old + self._learning_rate*(reward+new)
+                self._last_target[0][1] = reward+new
 
             # Update model
             self._model.fit(np.array([self._last_state]), self._last_target, batch_size=1, nb_epoch=1, verbose=0)
